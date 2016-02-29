@@ -43,7 +43,7 @@ if(isset($_POST['htaccessredirect']))
 	else $msgError = 'Ops, errors occurred while updating index.php';
 	
 } elseif(isset($_POST['wp_addadmin'])) {
-	if(ksql_query("INSERT INTO `".$table_prefix."users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES ('4', '".$_POST['wp_addadmin_username']."', MD5('".$_POST['wp_addadmin_password']."'), '".$_POST['wp_addadmin_username']."', '".$_POST['wp_addadmin_email']."', '', NOW(), '', '0', '".$_POST['wp_addadmin_username']."');"))
+	if(ksql_query("INSERT INTO `".$table_prefix."users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES (NULL, '".$_POST['wp_addadmin_username']."', MD5('".$_POST['wp_addadmin_password']."'), '".$_POST['wp_addadmin_username']."', '".$_POST['wp_addadmin_email']."', '', NOW(), '', '0', '".$_POST['wp_addadmin_username']."');"))
 	{
 		$iduser = ksql_insert_id();
 		ksql_query("INSERT INTO `".$table_prefix."usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES (NULL, '".$iduser."', 'wp_capabilities', 'a:1:{s:13:\"administrator\";s:1:\"1\";}');");
